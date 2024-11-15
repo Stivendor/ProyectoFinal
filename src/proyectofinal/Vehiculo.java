@@ -7,6 +7,136 @@ public class Vehiculo {
 
     Scanner Datos = new Scanner(System.in);
 
+    double valorGasolina;
+
+    public void Gasolina() {
+
+        valorGasolina = 16000;
+
+    } // END VOID GASOLINA
+
+    int pasajerosTaxi = 4;
+    double valorPasajeTaxi = 25000;
+    double valorPeajeTaxi = 31000;
+    double totalPeajeTaxi = valorPeajeTaxi * 6;
+    double totalPasajeTaxi;
+    double totalGastosTaxi;
+    double acomuladorIngresosTaxi = 0;
+    double acomuladorGastosTaxi = 0;
+
+    double consumoAutopistaTaxi;
+    double consumoSantaElenaTaxi;
+    double consumoPalmasTaxi;
+
+    public void Taxi() {
+        Gasolina();
+        Cambios();
+
+        for (int i = 1; i <= 6; i++) {
+
+            totalPasajeTaxi = valorPasajeTaxi * pasajerosTaxi;
+            acomuladorIngresosTaxi += totalPasajeTaxi;
+
+            consumoAutopistaTaxi = totalPeajeTaxi + consumoCambioAutopista + (pasajerosTaxi * 1.12) * valorGasolina;
+            consumoSantaElenaTaxi = totalPeajeTaxi + consumoCambioSantaElena + (pasajerosTaxi * 1.15) * valorGasolina;
+            consumoPalmasTaxi = totalPeajeTaxi + consumoCambioPalmas + (pasajerosTaxi * 1.15) * valorGasolina;
+
+            acomuladorGastosTaxi += consumoAutopistaTaxi + consumoSantaElenaTaxi + consumoPalmasTaxi;
+
+            System.out.println("=== Día " + i + " ===");
+            System.out.println("Pasajeros Taxi: " + pasajerosTaxi);
+            System.out.println("Gasto Autopista Taxi: " + consumoAutopistaTaxi + " pesos");
+            System.out.println("Gasto Santa Elena Taxi: " + consumoSantaElenaTaxi + " pesos");
+            System.out.println("Gasto Palmas Taxi: " + consumoPalmasTaxi + " pesos");
+            System.out.println("");
+        }
+
+        System.out.println("Gastos totales del Taxi: " + acomuladorGastosTaxi);
+        System.out.println(consumoAutopistaTaxi);
+        System.out.println(consumoSantaElenaTaxi);
+        System.out.println(consumoPalmasTaxi);
+        System.out.println("");
+
+    } // END VOID TAXI
+
+    Random randomVans = new Random();
+
+    double valorPeajeVans = 41000;
+    double valorPasajeVans = 15000;
+    double totalPasajeVans;
+    double totalPeajeVans = valorPeajeVans * 6;
+    double totalGastosVans;
+    double acomuladorIngresosVans = 0;
+
+    double consumoAutopistaVans;
+    double consumoSantaElenaVans;
+    double consumoPalmasVans;
+
+    public void Vans() {
+        Gasolina();
+        Cambios();
+
+        for (int i = 1; i <= 6; i++) {
+            int pasajerosVans = randomVans.nextInt(10) + 1;
+
+            totalPasajeVans = valorPasajeVans * pasajerosVans;
+            acomuladorIngresosVans += totalPasajeVans;
+
+            consumoAutopistaVans = totalPeajeVans + consumoCambioAutopista + (pasajerosVans * 1.12) * valorGasolina;
+            consumoSantaElenaVans = totalPeajeVans + consumoCambioSantaElena + (pasajerosVans * 1.15) * valorGasolina;
+            consumoPalmasVans = totalPeajeVans + consumoCambioPalmas + (pasajerosVans * 1.15) * valorGasolina;
+
+            totalGastosVans = consumoAutopistaVans + consumoSantaElenaVans + consumoPalmasVans + totalPeajeVans;
+
+            System.out.println("=== Día " + i + " ===");
+            System.out.println("Pasajeros Vans: " + pasajerosVans);
+            System.out.println("Gasto Autopista Vans: " + consumoAutopistaVans + " pesos");
+            System.out.println("Gasto Santa Elena Vans: " + consumoSantaElenaVans + " pesos");
+            System.out.println("Gasto Palmas Vans: " + consumoPalmasVans + " pesos");
+            System.out.println("");
+        }
+
+    } // END VOID VANS
+
+    Random randomBuseta = new Random();
+
+    double valorPasajeBuseta = 12000;
+    double valorPeajeBuseta = 50000;
+    double totalPasajeBuseta;
+    double totalPeajeBuseta = valorPeajeBuseta * 6;
+    double totalGastosBuseta;
+    double acomuladorIngresosBuseta = 0;
+
+    double consumoAutopistaBuseta;
+    double consumoSantaElenaBuseta;
+    double consumoPalmasBuseta;
+
+    public void Buseta() {
+        Gasolina();
+        Cambios();
+
+        for (int i = 1; i <= 6; i++) {
+            int pasajerosBuseta = randomBuseta.nextInt(15) + 1;
+
+            totalPasajeBuseta = valorPasajeBuseta * pasajerosBuseta;
+            acomuladorIngresosBuseta += totalPasajeBuseta;
+
+            consumoAutopistaBuseta = totalPeajeBuseta + consumoCambioAutopista + (pasajerosBuseta * 1.12) * valorGasolina;
+            consumoSantaElenaBuseta = totalPeajeBuseta + consumoCambioSantaElena + (pasajerosBuseta * 1.15) * valorGasolina;
+            consumoPalmasBuseta = totalPeajeBuseta + consumoCambioPalmas + (pasajerosBuseta * 1.15) * valorGasolina;
+
+            totalGastosBuseta = consumoAutopistaBuseta + consumoSantaElenaBuseta + consumoPalmasBuseta + totalPeajeBuseta;
+
+            System.out.println("=== Día " + i + " ===");
+            System.out.println("Pasajeros Buseta: " + pasajerosBuseta);
+            System.out.println("Gasto Autopista Buseta: " + consumoAutopistaBuseta + " pesos");
+            System.out.println("Gasto Santa Elena Buseta: " + consumoSantaElenaBuseta + " pesos");
+            System.out.println("Gasto Palmas Buseta: " + consumoPalmasBuseta + " pesos");
+            System.out.println("");
+        }
+
+    } // END VOID BUSETA
+
     int distanciaSubidaAutopistaCambioUno;
     int distanciaSubidaAutopistaCambioDos;
     int distanciaSubidaAutopistaCambioTres;
@@ -38,74 +168,6 @@ public class Vehiculo {
 
     }// END VOID DISTANCIARUTAS
 
-    double valorGasolina;
-
-    public void Gasolina() {
-
-        valorGasolina = 16000;
-
-    } // END VOID GASOLINA
-
-    int pasajerosTaxi = 4;
-    double valorPasajeTaxi = 25000;
-    double valorPeajeTaxi = 31000;
-    double totalPasajeTaxi;
-
-    double consumoAutopistaTaxi;
-    double consumoSantaElenaTaxi;
-    double consumoPalmasTaxi;
-
-    public void Taxi() {
-        Gasolina();
-        totalPasajeTaxi = valorPasajeTaxi * pasajerosTaxi;
-
-        consumoAutopistaTaxi = (pasajerosTaxi * 1.20) * valorGasolina;
-        consumoSantaElenaTaxi = (pasajerosTaxi * 1.28) * valorGasolina;
-        consumoPalmasTaxi = (pasajerosTaxi * 1.28) * valorGasolina;
-
-    } // END VOID TAXI
-
-    Random randomVans = new Random();
-    int pasajerosVans = randomVans.nextInt(10) + 1;
-    double valorPeajeVans = 41000;
-    double valorPasajeVans = 15000;
-    double totalPasajeVans;
-
-    double consumoAutopistaVans;
-    double consumoSantaElenaVans;
-    double consumoPalmasVans;
-
-    public void Vans() {
-        Gasolina();
-        totalPasajeVans = valorPasajeVans * pasajerosVans;
-
-        consumoAutopistaVans = (pasajerosVans * 1.08) * valorGasolina;
-        consumoSantaElenaVans = (pasajerosVans * 1.11) * valorGasolina;
-        consumoPalmasVans = (pasajerosVans * 1.11) * valorGasolina;
-
-    } // END VOID VANS
-
-    Random randomBuseta = new Random();
-
-    int pasajerosBuseta = randomBuseta.nextInt(15) + 1;
-    double valorPasajeBuseta = 12000;
-    double valorPeajeBuseta = 50000;
-    double totalPasajeBuseta;
-
-    double consumoAutopistaBuseta;
-    double consumoSantaElenaBuseta;
-    double consumoPalmasBuseta;
-
-    public void Buseta() {
-        Gasolina();
-        totalPasajeBuseta = valorPasajeBuseta * pasajerosBuseta;
-
-        consumoAutopistaBuseta = (pasajerosBuseta * 1.12) * valorGasolina;
-        consumoSantaElenaBuseta = (pasajerosBuseta * 1.15) * valorGasolina;
-        consumoPalmasBuseta = (pasajerosBuseta * 1.15) * valorGasolina;
-
-    } // END VOID BUSETA
-
     double cambioUno;
     double cambioDos;
     double cambioTres;
@@ -117,7 +179,6 @@ public class Vehiculo {
     public void Cambios() {
         Gasolina();
         DistanciaRutas();
-        System.out.println("");
 
         cambioUno = .03;
         cambioDos = .02;
@@ -127,90 +188,26 @@ public class Vehiculo {
         consumoCambioSantaElena = ((distanciaSubidaSantaElenaCambioUno * cambioUno) + (distanciaSubidaSantaElenaCambioDos * cambioDos) + (distanciaSubidaSantaElenaCambioTres * cambioTres)) * valorGasolina;
         consumoCambioPalmas = ((distanciaSubidaPalmasCambioUno * cambioUno) + (distanciaSubidaPalmasCambioDos * cambioDos) + (distanciaSubidaPalmasCambioTres * cambioTres)) * valorGasolina;
 
-        System.out.println("En la subida via Autopista el gasto adicional fue de: " + consumoCambioAutopista );
-        System.out.println("En la subida via Santa Elena el gasto adicional fue de: " + consumoCambioSantaElena  );
-        System.out.println("En la subida via Palmas el gasto adicional fue de: " + consumoCambioPalmas );
     }//END VOID CAMBIOS
 
     double totalGastos;
     double totalIngresos;
 
     public void Totales() {
-        totalGastos = (valorPeajeTaxi + valorPeajeVans + valorPeajeBuseta + consumoCambioAutopista + consumoCambioSantaElena + consumoCambioPalmas) * 6;
-        totalIngresos = (totalPasajeTaxi + totalPasajeVans + totalPasajeBuseta) * 6;
+        Taxi();
+        Vans();
+        Buseta();
+
+        totalIngresos = acomuladorIngresosBuseta + acomuladorIngresosVans + acomuladorIngresosTaxi;
+        totalGastos = totalGastosBuseta + totalGastosVans + totalGastosTaxi;
+
     }//END VOID TOTALES
 
     int ruta;
 
     public void Menu() {
 
-//        System.out.println("POR FAVOR ELIJA LA RUTA QUE QUIERA TOMAR:");
-//        System.out.println("1. Autopista");
-//        System.out.println("2. Santa Elena");
-//        System.out.println("3. Las Palmas");
-//
-//        ruta = Datos.nextInt();
-//
-//        switch (ruta) {
-//            case 1:
-//                System.out.println("");
-//                System.out.println("Usted eligio la ruta: Autopista");
-//                System.out.println("El gasto en la Autopista con el taxi fue de : ");
-//
-//                break;
-//
-//            case 2:
-//                System.out.println("");
-//                System.out.println("Usted eligio la ruta: Santa Elena");
-//
-//                break;
-//
-//            case 3:
-//                System.out.println("");
-//                System.out.println("Usted eligio la ruta: Las Palmas");
-//                break;
-//
-//            default:
-//                System.out.println("");
-//                System.out.println("Elija una opción correcta por favor");
-//
-//        }
     } // END VOID RUTAS
-
-    public void Impresion() {
-        Taxi();
-        Vans();
-        Buseta();
-        Totales();
-
-        System.out.println("=============RESULTADOS=============");
-
-        // IMPRESION DE LA TAXI
-        System.out.println("Pasajeros del Taxi: " + pasajerosTaxi);
-        System.out.println("Gasto en la Autopista del Taxi: " + consumoAutopistaTaxi + " Galones");
-        System.out.println("Gasto en la ruta Santa Elena del Taxi: " + consumoSantaElenaTaxi + " Galones");
-        System.out.println("Gasto en la ruta Palmas del Taxi: " + consumoPalmasTaxi + " Galones");
-
-        // IMPRESION DE LA VANS
-        System.out.println("");
-        System.out.println("Pasajeros de la Vans: " + pasajerosVans);
-        System.out.println("Gasto en la ruta Autopista en la Vans: " + consumoAutopistaVans + " Galones");
-        System.out.println("Gasto en la ruta Santa Elena y Palmas en la Vans: " + consumoSantaElenaVans + " Galones");
-        System.out.println("Gasto en la ruta Santa Elena y Palmas en la Vans: " + consumoPalmasVans + " Galones");
-
-        // IMPRESION DE LA BUSETA
-        System.out.println("");
-        System.out.println("Pasajeros de la Buseta: " + pasajerosBuseta);
-        System.out.println("Gasto en la ruta Autopista en la Buseta: " + consumoAutopistaBuseta + " Galones");
-        System.out.println("Gasto en la ruta Santa Elena en la Buseta: " + consumoSantaElenaBuseta + " Galones");
-        System.out.println("Gasto en la ruta Palmas en la Buseta: " + consumoPalmasBuseta + " Galones");
-
-        // IMPRESION TOTALES
-        System.out.println("");
-        System.out.println("Gastos totales: " + totalGastos);
-        System.out.println("Ingresos totales " + totalIngresos);
-
-    } // END VOID IMPRESION
 
     public static void main(String[] args) {
         Vehiculo Prueba = new Vehiculo();
@@ -219,6 +216,5 @@ public class Vehiculo {
         Prueba.Vans();
         Prueba.Buseta();
         Prueba.Cambios();
-        Prueba.Impresion();
     }
 }
