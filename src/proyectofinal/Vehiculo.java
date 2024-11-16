@@ -7,18 +7,11 @@ public class Vehiculo {
 
     Scanner Datos = new Scanner(System.in);
 
-    double valorGasolina;
-
-    public void Gasolina() {
-
-        valorGasolina = 16000;
-
-    } // END VOID GASOLINA
+    double valorGasolina = 16000;
 
     int pasajerosTaxi = 4;
     double valorPasajeTaxi = 25000;
     double valorPeajeTaxi = 31000;
-    double totalPeajeTaxi = valorPeajeTaxi * 6;
     double totalPasajeTaxi;
     double totalGastosTaxi;
     double acomuladorIngresosTaxi = 0;
@@ -29,7 +22,6 @@ public class Vehiculo {
     double consumoPalmasTaxi;
 
     public void Taxi() {
-        Gasolina();
         Cambios();
 
         for (int i = 1; i <= 6; i++) {
@@ -37,9 +29,9 @@ public class Vehiculo {
             totalPasajeTaxi = valorPasajeTaxi * pasajerosTaxi;
             acomuladorIngresosTaxi += totalPasajeTaxi;
 
-            consumoAutopistaTaxi = totalPeajeTaxi + consumoCambioAutopista + (pasajerosTaxi * 1.12) * valorGasolina;
-            consumoSantaElenaTaxi = totalPeajeTaxi + consumoCambioSantaElena + (pasajerosTaxi * 1.15) * valorGasolina;
-            consumoPalmasTaxi = totalPeajeTaxi + consumoCambioPalmas + (pasajerosTaxi * 1.15) * valorGasolina;
+            consumoAutopistaTaxi = (consumoCambioAutopista + valorPeajeTaxi + (pasajerosTaxi * valorGasolina / 50) * 1.05);
+            consumoSantaElenaTaxi = (consumoCambioSantaElena + valorPeajeTaxi + (pasajerosTaxi * valorGasolina / 50) * 1.07);
+            consumoPalmasTaxi = (consumoCambioPalmas + valorPeajeTaxi + (pasajerosTaxi * valorGasolina / 50) * 1.07);
 
             acomuladorGastosTaxi += consumoAutopistaTaxi + consumoSantaElenaTaxi + consumoPalmasTaxi;
 
@@ -49,13 +41,11 @@ public class Vehiculo {
             System.out.println("Gasto Santa Elena Taxi: " + consumoSantaElenaTaxi + " pesos");
             System.out.println("Gasto Palmas Taxi: " + consumoPalmasTaxi + " pesos");
             System.out.println("");
-        }
 
-        System.out.println("Gastos totales del Taxi: " + acomuladorGastosTaxi);
-        System.out.println(consumoAutopistaTaxi);
-        System.out.println(consumoSantaElenaTaxi);
-        System.out.println(consumoPalmasTaxi);
-        System.out.println("");
+            System.out.println("Acumulador Ingresos Taxi (Día " + i + "): " + acomuladorIngresosTaxi);
+            System.out.println("Acumulador Gastos Taxi (Día " + i + "): " + acomuladorGastosTaxi);
+            System.out.println("");
+        }
 
     } // END VOID TAXI
 
@@ -67,13 +57,13 @@ public class Vehiculo {
     double totalPeajeVans = valorPeajeVans * 6;
     double totalGastosVans;
     double acomuladorIngresosVans = 0;
+    double acomuladorGastosVans = 0;
 
     double consumoAutopistaVans;
     double consumoSantaElenaVans;
     double consumoPalmasVans;
 
     public void Vans() {
-        Gasolina();
         Cambios();
 
         for (int i = 1; i <= 6; i++) {
@@ -82,11 +72,11 @@ public class Vehiculo {
             totalPasajeVans = valorPasajeVans * pasajerosVans;
             acomuladorIngresosVans += totalPasajeVans;
 
-            consumoAutopistaVans = totalPeajeVans + consumoCambioAutopista + (pasajerosVans * 1.12) * valorGasolina;
-            consumoSantaElenaVans = totalPeajeVans + consumoCambioSantaElena + (pasajerosVans * 1.15) * valorGasolina;
-            consumoPalmasVans = totalPeajeVans + consumoCambioPalmas + (pasajerosVans * 1.15) * valorGasolina;
+            consumoAutopistaVans = (consumoCambioAutopista + valorPeajeVans + (pasajerosVans * valorGasolina / 40) * 1.08);
+            consumoSantaElenaVans = (consumoCambioSantaElena + valorPeajeVans + (pasajerosVans * valorGasolina / 40) * 1.11);
+            consumoPalmasVans = (consumoCambioPalmas + valorPeajeVans + (pasajerosVans * valorGasolina / 40) * 1.11);
 
-            totalGastosVans = consumoAutopistaVans + consumoSantaElenaVans + consumoPalmasVans + totalPeajeVans;
+            acomuladorGastosVans += consumoAutopistaVans + consumoSantaElenaVans + consumoPalmasVans;
 
             System.out.println("=== Día " + i + " ===");
             System.out.println("Pasajeros Vans: " + pasajerosVans);
@@ -94,6 +84,11 @@ public class Vehiculo {
             System.out.println("Gasto Santa Elena Vans: " + consumoSantaElenaVans + " pesos");
             System.out.println("Gasto Palmas Vans: " + consumoPalmasVans + " pesos");
             System.out.println("");
+
+            System.out.println("Acumulador Ingresos Vans (Día " + i + "): " + acomuladorIngresosVans);
+            System.out.println("Acumulador Gastos Vans (Día " + i + "): " + acomuladorGastosVans);
+            System.out.println("");
+            
         }
 
     } // END VOID VANS
@@ -106,13 +101,13 @@ public class Vehiculo {
     double totalPeajeBuseta = valorPeajeBuseta * 6;
     double totalGastosBuseta;
     double acomuladorIngresosBuseta = 0;
+    double acomuladorGastosBuseta = 0;
 
     double consumoAutopistaBuseta;
     double consumoSantaElenaBuseta;
     double consumoPalmasBuseta;
 
     public void Buseta() {
-        Gasolina();
         Cambios();
 
         for (int i = 1; i <= 6; i++) {
@@ -121,11 +116,11 @@ public class Vehiculo {
             totalPasajeBuseta = valorPasajeBuseta * pasajerosBuseta;
             acomuladorIngresosBuseta += totalPasajeBuseta;
 
-            consumoAutopistaBuseta = totalPeajeBuseta + consumoCambioAutopista + (pasajerosBuseta * 1.12) * valorGasolina;
-            consumoSantaElenaBuseta = totalPeajeBuseta + consumoCambioSantaElena + (pasajerosBuseta * 1.15) * valorGasolina;
-            consumoPalmasBuseta = totalPeajeBuseta + consumoCambioPalmas + (pasajerosBuseta * 1.15) * valorGasolina;
+            consumoAutopistaBuseta = (consumoCambioAutopista + valorPeajeBuseta + (pasajerosBuseta * valorGasolina / 30) * 1.12);
+            consumoSantaElenaBuseta = (consumoCambioSantaElena + valorPeajeBuseta + (pasajerosBuseta * valorGasolina / 30) * 1.15);
+            consumoPalmasBuseta = (consumoCambioPalmas + valorPeajeBuseta + (pasajerosBuseta * valorGasolina / 30) * 1.15);
 
-            totalGastosBuseta = consumoAutopistaBuseta + consumoSantaElenaBuseta + consumoPalmasBuseta + totalPeajeBuseta;
+            acomuladorGastosBuseta += consumoAutopistaBuseta + consumoSantaElenaBuseta + consumoPalmasBuseta;
 
             System.out.println("=== Día " + i + " ===");
             System.out.println("Pasajeros Buseta: " + pasajerosBuseta);
@@ -133,7 +128,13 @@ public class Vehiculo {
             System.out.println("Gasto Santa Elena Buseta: " + consumoSantaElenaBuseta + " pesos");
             System.out.println("Gasto Palmas Buseta: " + consumoPalmasBuseta + " pesos");
             System.out.println("");
+
+            System.out.println("Acumulador Ingresos Buseta (Día " + i + "): " + acomuladorIngresosBuseta);
+            System.out.println("Acumulador Gastos Buseta (Día " + i + "): " + acomuladorGastosBuseta);
+            System.out.println("");
+            
         }
+
 
     } // END VOID BUSETA
 
@@ -177,31 +178,29 @@ public class Vehiculo {
     double consumoCambioPalmas;
 
     public void Cambios() {
-        Gasolina();
         DistanciaRutas();
 
         cambioUno = .03;
         cambioDos = .02;
         cambioTres = .01;
 
-        consumoCambioAutopista = ((distanciaSubidaAutopistaCambioUno * cambioUno) + (distanciaSubidaAutopistaCambioDos * cambioDos) + (distanciaSubidaAutopistaCambioTres * cambioTres)) * valorGasolina;
-        consumoCambioSantaElena = ((distanciaSubidaSantaElenaCambioUno * cambioUno) + (distanciaSubidaSantaElenaCambioDos * cambioDos) + (distanciaSubidaSantaElenaCambioTres * cambioTres)) * valorGasolina;
-        consumoCambioPalmas = ((distanciaSubidaPalmasCambioUno * cambioUno) + (distanciaSubidaPalmasCambioDos * cambioDos) + (distanciaSubidaPalmasCambioTres * cambioTres)) * valorGasolina;
+        consumoCambioAutopista = ((distanciaSubidaAutopistaCambioUno * cambioUno) + (distanciaSubidaAutopistaCambioDos * cambioDos) + (distanciaSubidaAutopistaCambioTres * cambioTres)) ;
+        consumoCambioSantaElena = ((distanciaSubidaSantaElenaCambioUno * cambioUno) + (distanciaSubidaSantaElenaCambioDos * cambioDos) + (distanciaSubidaSantaElenaCambioTres * cambioTres)) ;
+        consumoCambioPalmas = ((distanciaSubidaPalmasCambioUno * cambioUno) + (distanciaSubidaPalmasCambioDos * cambioDos) + (distanciaSubidaPalmasCambioTres * cambioTres));
 
     }//END VOID CAMBIOS
 
-    double totalGastos;
-    double totalIngresos;
+    double gastosGlobales;
+    double ingresosGlobales;
 
     public void Totales() {
-        Taxi();
-        Vans();
-        Buseta();
+        ingresosGlobales = acomuladorIngresosBuseta + acomuladorIngresosVans + acomuladorIngresosTaxi;
+        gastosGlobales = acomuladorGastosBuseta + acomuladorGastosVans + acomuladorGastosTaxi;
 
-        totalIngresos = acomuladorIngresosBuseta + acomuladorIngresosVans + acomuladorIngresosTaxi;
-        totalGastos = totalGastosBuseta + totalGastosVans + totalGastosTaxi;
-
-    }//END VOID TOTALES
+        System.out.println("Los ingresos globales: " + ingresosGlobales + " pesos");
+        System.out.println("Los gastos globales: " + gastosGlobales + " pesos");
+    }
+//END VOID TOTALES
 
     int ruta;
 
@@ -211,10 +210,9 @@ public class Vehiculo {
 
     public static void main(String[] args) {
         Vehiculo Prueba = new Vehiculo();
-        Prueba.Menu();
         Prueba.Taxi();
         Prueba.Vans();
         Prueba.Buseta();
-        Prueba.Cambios();
+        Prueba.Totales();
     }
 }
