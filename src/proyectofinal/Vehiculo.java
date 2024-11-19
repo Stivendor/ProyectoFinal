@@ -27,9 +27,9 @@ public class Vehiculo {
             ingresoDiarioTaxi = valorPasajeTaxi * pasajerosTaxi;
             acomuladorIngresosTaxi += ingresoDiarioTaxi;
 
-            consumoAutopistaTaxi = (consumoCambioAutopista + valorPeajeTaxi + (valorGasolina / 50) * 1.05);
-            consumoSantaElenaTaxi = (consumoCambioSantaElena + valorPeajeTaxi + (valorGasolina / 50) * 1.07);
-            consumoPalmasTaxi = (consumoCambioPalmas + valorPeajeTaxi + (valorGasolina / 50) * 1.07);
+            consumoAutopistaTaxi = (distanciaBajadaAutopista + consumoCambioAutopista + valorPeajeTaxi + (valorGasolina / 50 * 45) * .20);
+            consumoSantaElenaTaxi = (distanciaBajadaSantaElena + consumoCambioSantaElena + valorPeajeTaxi + (valorGasolina / 50 * 50) * .28);
+            consumoPalmasTaxi = (distanciaBajadaPalmas + consumoCambioPalmas + valorPeajeTaxi + (valorGasolina / 50 * 55) * .28);
 
             gastoDiarioTaxi = consumoAutopistaTaxi + consumoSantaElenaTaxi + consumoPalmasTaxi;
             acomuladorGastosTaxi += gastoDiarioTaxi;
@@ -157,19 +157,25 @@ public class Vehiculo {
     int distanciaSubidaPalmasCambioDos;
     int distanciaSubidaPalmasCambioTres;
 
+    int distanciaBajadaAutopista;
+    int distanciaBajadaSantaElena;
+    int distanciaBajadaPalmas;
     public void DistanciaRutas() {
 
         //el total de subida Autopista es de: 45 
+        distanciaBajadaAutopista = 45;
         distanciaSubidaAutopistaCambioUno = 10;
         distanciaSubidaAutopistaCambioDos = 20;
         distanciaSubidaAutopistaCambioTres = 15;
 
         //el total de subida Santa Elena es de: 50
+        distanciaBajadaSantaElena = 50;
         distanciaSubidaSantaElenaCambioUno = 20;
         distanciaSubidaSantaElenaCambioDos = 20;
         distanciaSubidaSantaElenaCambioTres = 10;
 
         //el total de subida Palmas es de: 55
+        distanciaBajadaPalmas = 55;
         distanciaSubidaPalmasCambioUno = 15;
         distanciaSubidaPalmasCambioDos = 15;
         distanciaSubidaPalmasCambioTres = 25;
@@ -272,6 +278,7 @@ public class Vehiculo {
 
         System.out.println("=====RENTABILIDAD TOTAL DE LA SEMANA=====");
         System.out.println("La rentabilidad de la semana fue de: " + rentabilidad + " pesos");
+        System.out.println("coso taxi: "+ consumoAutopistaTaxi);
 
         System.out.println("");
 
