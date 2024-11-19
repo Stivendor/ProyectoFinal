@@ -199,7 +199,11 @@ public class Vehiculo {
 
     double[][] ingresosMatriz = new double[6][3]; // Columna 0: Taxi, Columna 1: Vans, Columna 2: Busetas
     double[][] gastosMatriz = new double[6][3];
-
+    
+    double promedioIngresoDiarioTaxi;
+    double promedioIngresoDiarioVans;
+    double promedioIngresoDiarioBuseta;
+    
     double gastosGlobales;
     double ingresosGlobales;
     double rentabilidad;
@@ -215,7 +219,10 @@ public class Vehiculo {
             System.out.println();
 
         }
-
+        
+        promedioIngresoDiarioTaxi = ingresoDiarioTaxi / ingresosMatriz.length;
+        promedioIngresoDiarioVans = ingresoDiarioVans / ingresosMatriz.length;
+        promedioIngresoDiarioBuseta = ingresoDiarioBuseta / ingresosMatriz.length;
         ingresosGlobales = acomuladorIngresosBuseta + acomuladorIngresosVans + acomuladorIngresosTaxi;
         gastosGlobales = acomuladorGastosBuseta + acomuladorGastosVans + acomuladorGastosTaxi;
         rentabilidad = ingresosGlobales - gastosGlobales;
@@ -233,6 +240,11 @@ public class Vehiculo {
         System.out.println("=====INGRESOS Y GASTOS GLOBALES=====");
         System.out.println("Los ingresos globales: " + ingresosGlobales + " pesos");
         System.out.println("Los gastos globales: " + gastosGlobales + " pesos");
+        System.out.println("");
+        System.out.println("=====PROMEDIO DE INGRESOS=====");
+        System.out.println("El promedio de ingresos del Taxi en la semana fue de: " + promedioIngresoDiarioTaxi);
+        System.out.println("El promedio de ingresos de la Vans en la semana fue de: " + promedioIngresoDiarioVans);
+        System.out.println("El promedio de ingresos de la Vans en la semana fue de: " + promedioIngresoDiarioBuseta);
         System.out.println("");
         System.out.println("=====RENTABILIDAD DE LA SEMANA=====");
         System.out.println("La rentabilidad de la semana fue de: " + rentabilidad + " pesos");
