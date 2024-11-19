@@ -220,9 +220,9 @@ public class Vehiculo {
 
         }
         
-        promedioIngresoDiarioTaxi = ingresoDiarioTaxi / ingresosMatriz.length;
-        promedioIngresoDiarioVans = ingresoDiarioVans / ingresosMatriz.length;
-        promedioIngresoDiarioBuseta = ingresoDiarioBuseta / ingresosMatriz.length;
+        promedioIngresoDiarioTaxi = acomuladorIngresosTaxi / ingresosMatriz.length;
+        promedioIngresoDiarioVans = acomuladorIngresosVans / ingresosMatriz.length;
+        promedioIngresoDiarioBuseta = acomuladorIngresosBuseta / ingresosMatriz.length;
         ingresosGlobales = acomuladorIngresosBuseta + acomuladorIngresosVans + acomuladorIngresosTaxi;
         gastosGlobales = acomuladorGastosBuseta + acomuladorGastosVans + acomuladorGastosTaxi;
         rentabilidad = ingresosGlobales - gastosGlobales;
