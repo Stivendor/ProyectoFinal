@@ -27,9 +27,9 @@ public class Vehiculo {
             ingresoDiarioTaxi = valorPasajeTaxi * pasajerosTaxi;
             acomuladorIngresosTaxi += ingresoDiarioTaxi;
 
-            consumoAutopistaTaxi = (consumoCambioAutopista + valorPeajeTaxi + (pasajerosTaxi * valorGasolina / 50) * 1.05);
-            consumoSantaElenaTaxi = (consumoCambioSantaElena + valorPeajeTaxi + (pasajerosTaxi * valorGasolina / 50) * 1.07);
-            consumoPalmasTaxi = (consumoCambioPalmas + valorPeajeTaxi + (pasajerosTaxi * valorGasolina / 50) * 1.07);
+            consumoAutopistaTaxi = (consumoCambioAutopista + valorPeajeTaxi + (valorGasolina / 50) * 1.05);
+            consumoSantaElenaTaxi = (consumoCambioSantaElena + valorPeajeTaxi + (valorGasolina / 50) * 1.07);
+            consumoPalmasTaxi = (consumoCambioPalmas + valorPeajeTaxi + (valorGasolina / 50) * 1.07);
 
             gastoDiarioTaxi = consumoAutopistaTaxi + consumoSantaElenaTaxi + consumoPalmasTaxi;
             acomuladorGastosTaxi += gastoDiarioTaxi;
@@ -160,9 +160,9 @@ public class Vehiculo {
     public void DistanciaRutas() {
 
         //el total de subida Autopista es de: 45 
-        distanciaSubidaAutopistaCambioUno = 20;
-        distanciaSubidaAutopistaCambioDos = 15;
-        distanciaSubidaAutopistaCambioTres = 10;
+        distanciaSubidaAutopistaCambioUno = 10;
+        distanciaSubidaAutopistaCambioDos = 20;
+        distanciaSubidaAutopistaCambioTres = 15;
 
         //el total de subida Santa Elena es de: 50
         distanciaSubidaSantaElenaCambioUno = 20;
@@ -203,6 +203,13 @@ public class Vehiculo {
     double promedioIngresoDiarioTaxi;
     double promedioIngresoDiarioVans;
     double promedioIngresoDiarioBuseta;
+    double promedioGastoDiarioTaxi;
+    double promedioGastoDiarioVans;
+    double promedioGastoDiarioBuseta;
+
+    double sumaPromedioIngresoDiario;
+    double sumaPromedioGastoDiario;
+    double promedioRentabilidadDiaria;
 
     double gastosGlobales;
     double ingresosGlobales;
@@ -222,6 +229,15 @@ public class Vehiculo {
         promedioIngresoDiarioTaxi = acomuladorIngresosTaxi / ingresosMatriz.length;
         promedioIngresoDiarioVans = acomuladorIngresosVans / ingresosMatriz.length;
         promedioIngresoDiarioBuseta = acomuladorIngresosBuseta / ingresosMatriz.length;
+
+        promedioGastoDiarioTaxi = acomuladorGastosTaxi / gastosMatriz.length;
+        promedioGastoDiarioVans = acomuladorGastosVans / gastosMatriz.length;
+        promedioGastoDiarioBuseta = acomuladorGastosBuseta / gastosMatriz.length;
+
+        sumaPromedioIngresoDiario = promedioIngresoDiarioBuseta + promedioIngresoDiarioVans + promedioIngresoDiarioTaxi;
+        sumaPromedioGastoDiario = promedioGastoDiarioBuseta + promedioGastoDiarioTaxi + promedioGastoDiarioVans;
+        promedioRentabilidadDiaria = sumaPromedioIngresoDiario + sumaPromedioGastoDiario;
+
         ingresosGlobales = acomuladorIngresosBuseta + acomuladorIngresosVans + acomuladorIngresosTaxi;
         gastosGlobales = acomuladorGastosBuseta + acomuladorGastosVans + acomuladorGastosTaxi;
         rentabilidad = ingresosGlobales - gastosGlobales;
@@ -241,21 +257,27 @@ public class Vehiculo {
 
         System.out.println("");
 
+        System.out.println("=====PROMEDIO INGRESOS Y GASTOS DIARIOS=====");
+        System.out.println("El promedio de ingresos del Taxi en la semana fue de: " + promedioIngresoDiarioTaxi);
+        System.out.println("El promedio de ingresos de la Vans en la semana fue de: " + promedioIngresoDiarioVans);
+        System.out.println("El promedio de ingresos de la Buseta en la semana fue de: " + promedioIngresoDiarioBuseta);
+        System.out.println("TOTAL: " + sumaPromedioIngresoDiario);
+        System.out.println("El promedio de gastos del Taxi en la semana fue de: " + promedioGastoDiarioTaxi);
+        System.out.println("El promedio de gastos de la Vans en la semana fue de: " + promedioGastoDiarioVans);
+        System.out.println("El promedio de gastos de la Buseta en la semana fue de: " + promedioGastoDiarioBuseta);
+        System.out.println("TOTAL: " + sumaPromedioGastoDiario);
+        System.out.println("El promedio de rentabilidad diaria fue de: " + promedioRentabilidadDiaria);
+
+        System.out.println("");
+
+        System.out.println("=====RENTABILIDAD TOTAL DE LA SEMANA=====");
+        System.out.println("La rentabilidad de la semana fue de: " + rentabilidad + " pesos");
+
+        System.out.println("");
+
         System.out.println("=====INGRESOS Y GASTOS GLOBALES=====");
         System.out.println("Los ingresos globales: " + ingresosGlobales + " pesos");
         System.out.println("Los gastos globales: " + gastosGlobales + " pesos");
-
-        System.out.println("");
-
-        System.out.println("=====PROMEDIO DE INGRESOS=====");
-        System.out.println("El promedio de ingresos del Taxi en la semana fue de: " + promedioIngresoDiarioTaxi);
-        System.out.println("El promedio de ingresos de la Vans en la semana fue de: " + promedioIngresoDiarioVans);
-        System.out.println("El promedio de ingresos de la Vans en la semana fue de: " + promedioIngresoDiarioBuseta);
-
-        System.out.println("");
-
-        System.out.println("=====RENTABILIDAD DE LA SEMANA=====");
-        System.out.println("La rentabilidad de la semana fue de: " + rentabilidad + " pesos");
 
     } // END VOID MATRIZ
 
