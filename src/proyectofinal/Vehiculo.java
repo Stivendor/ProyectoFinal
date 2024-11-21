@@ -89,9 +89,7 @@ public class Vehiculo {
             acomuladorGastosTaxi += gastoDiarioTaxi;
 
             //CALCULAR EL PROMEDIO DE RENTABILIDAD AUTOPISTA (TAXI)
-            promedioGastosAutopistaTaxi = ((consumoNormalAutopistaTaxi + consumoExtraAutopistaTaxi) / 2);
-            promedioIngresosAutopistaTaxi = acomuladorIngresosTaxi / 6;
-            promedioRentabilidadAutopistaTaxi = ((promedioGastosAutopistaTaxi + promedioIngresosAutopistaTaxi) / 2);
+            promedioRentabilidadAutopistaTaxi = ((consumoNormalAutopistaTaxi + consumoExtraAutopistaTaxi) / 2);
 
             //CALCULAR EL PROMEDIO DE RENTABILIDAD SANTA ELENA (TAXI)
             promedioGastosSantaElenaTaxi = ((consumoNormalSantaElenaTaxi + consumoExtraSantaElenaTaxi) / 2);
@@ -121,13 +119,12 @@ public class Vehiculo {
 //            System.out.println("promedioGastos " + promedioGastosPalmasTaxi);
 //            System.out.println("consumoExtra " + consumoExtraPalmasTaxi);
 //            System.out.println("consumoNormalSanta " + consumoNormalPalmasTaxi);
-            System.out.println("factorConsumo " + factorConsumoAutopistaTaxi);
+            System.out.println("RENTABILIDAD " + promedioRentabilidadAutopistaTaxi);
         }
 
     } // END VOID TAXI
 
-//    Random randomVans = new Random();
-    double pasajerosVans = 14;
+    Random randomVans = new Random();
     double valorPeajeVans = 20500;
     double valorPasajeVans = 15000;
     double ingresoDiarioVans;
@@ -160,6 +157,7 @@ public class Vehiculo {
     double consumoSantaElenaVans;
 
     public void Vans() {
+        int pasajerosVans = randomVans.nextInt(10) + 1;
         //CALCULAR EL CONSUMO TOTAL DE LA GASOLINA EN AUTOPISTA (VANS)
         consumoGasolinaAutopistaVans = valorGasolina / 40 * 45;
         consumoAdicionalAutopistaVans = consumoGasolinaAutopistaVans * (0.08 * pasajerosVans);
@@ -173,7 +171,7 @@ public class Vehiculo {
         Cambios();
 
         for (int i = 0; i < 6; i++) {
-//            int pasajerosVans = randomVans.nextInt(10) + 1;
+            
 
             //CONSUMO DE GASOLINA AUTOPISTA (VANS)
             consumoNormalAutopistaVans = ingresoDiarioVans - (consumoAutopistaVans + valorPeajeVans);
