@@ -36,7 +36,7 @@ public class Vehiculo {
     double promedioIngresosSantaElenaTaxi;
     double consumoNormalSantaElenaTaxi;
     double consumoExtraSantaElenaTaxi;
-    
+
     //VARIABLES CALCULO PALMAS (TAXI)
     double consumoGasolinaPalmasTaxi;
     double consumoAdicionalPalmasTaxi;
@@ -65,23 +65,23 @@ public class Vehiculo {
         consumoGasolinaPalmasTaxi = valorGasolina / 50 * 55;
         consumoAdicionalPalmasTaxi = consumoGasolinaPalmasTaxi * 0.28;
         consumoPalmasTaxi = consumoGasolinaPalmasTaxi + consumoAdicionalPalmasTaxi;
-        
+
         Cambios();
 
         for (int i = 0; i < 6; i++) {
 
             //CONSUMO DE GASOLINA AUTOPISTA (TAXI)
             consumoNormalAutopistaTaxi = ingresoDiarioTaxi - (consumoAutopistaTaxi + valorPeajeTaxi);
-            consumoExtraAutopistaTaxi = consumoNormalAutopistaTaxi - totalConsumoCambiosAutopista;
+            consumoExtraAutopistaTaxi = consumoNormalAutopistaTaxi - totalConsumoCambiosAutopistaTaxi;
 
             //CONSUMO DE GASOLINA SANTA ELENA (TAXI)
             consumoNormalSantaElenaTaxi = ingresoDiarioTaxi - (consumoSantaElenaTaxi + valorPeajeTaxi);
-            consumoExtraSantaElenaTaxi = consumoNormalSantaElenaTaxi - totalConsumoCambiosSantaElena;
-            
+            consumoExtraSantaElenaTaxi = consumoNormalSantaElenaTaxi - totalConsumoCambiosSantaElenaTaxi;
+
             //CONSUMO DE GASOLINA PALMAS
             consumoNormalPalmasTaxi = ingresoDiarioTaxi - (consumoPalmasTaxi + valorPeajeTaxi);
-            consumoExtraPalmasTaxi = consumoNormalPalmasTaxi - totalConsumoCambiosPalmas;
-            
+            consumoExtraPalmasTaxi = consumoNormalPalmasTaxi - totalConsumoCambiosPalmasTaxi;
+
             ingresoDiarioTaxi = valorPasajeTaxi * pasajerosTaxi;
             acomuladorIngresosTaxi += ingresoDiarioTaxi;
 
@@ -102,7 +102,7 @@ public class Vehiculo {
             promedioGastosPalmasTaxi = ((consumoNormalPalmasTaxi + consumoExtraPalmasTaxi) / 2);
             promedioIngresosPalmasTaxi = acomuladorIngresosTaxi / 6;
             promedioRentabilidadPalmasTaxi = ((promedioGastosPalmasTaxi + promedioIngresosPalmasTaxi) / 2);
-            
+
             ingresosMatriz[i][0] = ingresoDiarioTaxi;
             gastosMatriz[i][0] = gastoDiarioTaxi;
 
@@ -121,13 +121,13 @@ public class Vehiculo {
 //            System.out.println("promedioGastos " + promedioGastosPalmasTaxi);
 //            System.out.println("consumoExtra " + consumoExtraPalmasTaxi);
 //            System.out.println("consumoNormalSanta " + consumoNormalPalmasTaxi);
-            System.out.println("factorConsumo " + factorConsumoAutopista);
+            System.out.println("factorConsumo " + factorConsumoAutopistaTaxi);
         }
 
     } // END VOID TAXI
 
 //    Random randomVans = new Random();
-    double pasajerosVans = 5;
+    double pasajerosVans = 14;
     double valorPeajeVans = 20500;
     double valorPasajeVans = 15000;
     double ingresoDiarioVans;
@@ -137,6 +137,7 @@ public class Vehiculo {
 
     //VARIABLES PROMEDIO RUTAS (VANS)
     double promedioRentabilidadAutopistaVans;
+    double promedioRentabilidadSantaElenaVans;
 
     //VARIABLES CALCULO AUTOPISTA (VANS)
     double consumoGasolinaAutopistaVans;
@@ -145,25 +146,43 @@ public class Vehiculo {
     double promedioIngresosAutopistaVans;
     double consumoNormalAutopistaVans;
     double consumoExtraAutopistaVans;
+    
+    //VARIABLES CALCULO SANTA ELENA (VANS)
+    double consumoGasolinaSantaElenaVans;
+    double consumoAdicionalSantaElenaVans;
+    double promedioGastosSantaElenaVans;
+    double promedioIngresosSantaElenaVans;
+    double consumoNormalSantaElenaVans;
+    double consumoExtraSantaElenaVans;
 
     //TOTALES DE CONSUMO
     double consumoAutopistaVans;
+    double consumoSantaElenaVans;
 
     public void Vans() {
         //CALCULAR EL CONSUMO TOTAL DE LA GASOLINA EN AUTOPISTA (VANS)
-        consumoGasolinaAutopistaVans = valorGasolina / 45 * 40;
+        consumoGasolinaAutopistaVans = valorGasolina / 40 * 45;
         consumoAdicionalAutopistaVans = consumoGasolinaAutopistaVans * (0.08 * pasajerosVans);
         consumoAutopistaVans = consumoGasolinaAutopistaVans + consumoAdicionalAutopistaVans;
         
+        //CALCULAR EL CONSUMO TOTAL DE LA GASOLINA EN SANTA ELENA (VANS)
+        consumoGasolinaSantaElenaVans = valorGasolina / 40 * 50;
+        consumoAdicionalSantaElenaVans = consumoGasolinaSantaElenaVans * (0.11 * pasajerosVans);
+        consumoSantaElenaVans = consumoGasolinaSantaElenaVans + consumoAdicionalSantaElenaVans;
+
         Cambios();
 
         for (int i = 0; i < 6; i++) {
 //            int pasajerosVans = randomVans.nextInt(10) + 1;
-            
+
             //CONSUMO DE GASOLINA AUTOPISTA (VANS)
             consumoNormalAutopistaVans = ingresoDiarioVans - (consumoAutopistaVans + valorPeajeVans);
-            consumoExtraAutopistaVans = consumoNormalAutopistaVans - totalConsumoCambiosAutopista;
+            consumoExtraAutopistaVans = consumoNormalAutopistaVans - totalConsumoCambiosAutopistaVans;
             
+            //CONSUMO DE GASOLINA SANTA ELENA (VANS)
+            consumoNormalSantaElenaVans = ingresoDiarioVans - (consumoSantaElenaVans + valorPeajeVans);
+            consumoExtraSantaElenaVans = consumoNormalSantaElenaVans - totalConsumoCambiosSantaElenaVans;
+
             ingresoDiarioVans = valorPasajeVans * pasajerosVans;
             acomuladorIngresosVans += ingresoDiarioVans;
 
@@ -174,6 +193,12 @@ public class Vehiculo {
             promedioGastosAutopistaVans = ((consumoNormalAutopistaVans + consumoExtraAutopistaVans) / 2);
             promedioIngresosAutopistaVans = acomuladorIngresosVans / 6;
             promedioRentabilidadAutopistaVans = ((promedioGastosAutopistaVans + promedioIngresosAutopistaVans) / 2);
+
+            //CALCULAR EL PROMEDIO DE RENTABILIDAD SANTA ELENA (VANS)
+            promedioGastosSantaElenaVans = ((consumoNormalSantaElenaVans + consumoExtraSantaElenaVans) / 2);
+            promedioIngresosSantaElenaVans = acomuladorIngresosVans / 6;
+            promedioRentabilidadSantaElenaVans = ((promedioGastosSantaElenaVans + promedioIngresosSantaElenaVans) / 2);
+            
             
             ingresosMatriz[i][1] = ingresoDiarioVans;
             gastosMatriz[i][1] = gastoDiarioVans;
@@ -181,20 +206,21 @@ public class Vehiculo {
             System.out.println("============ Día " + (i + 1) + " ============");
             System.out.println("Pasajeros Vans: " + pasajerosVans);
             System.out.println("Gasto Autopista Vans: " + consumoAutopistaVans + " pesos");
-            System.out.println("Gasto Santa Elena Vans: "  + " pesos");
+            System.out.println("Gasto Santa Elena Vans: " + consumoSantaElenaVans +" pesos");
             System.out.println("Gasto Palmas Vans: "  + " pesos");
             System.out.println("");
 
             System.out.println("Ingreso de Vans (Día " + (i + 1) + "): " + ingresoDiarioVans);
             System.out.println("Gastos de Vans (Día " + (i + 1) + "): " + gastoDiarioVans);
             System.out.println("");
-            System.out.println("promedioRentabilidad " + promedioRentabilidadAutopistaVans);
-            System.out.println("promedioIngresos " + promedioIngresosAutopistaVans);
-            System.out.println("promedioGastos " + promedioGastosAutopistaVans);
-            System.out.println("consumoExtra " + consumoExtraAutopistaVans);
-            System.out.println("consumoNormalSanta " + consumoNormalAutopistaVans);
-            System.out.println("factorConsumo " + consumoCambioDosAutopista);
-            
+            System.out.println("promedioRentabilidad " + promedioRentabilidadSantaElenaVans);
+            System.out.println("promedioIngresos " + promedioIngresosSantaElenaVans);
+            System.out.println("promedioGastos " + promedioGastosSantaElenaVans);
+            System.out.println("consumoExtra " + consumoExtraSantaElenaVans);
+            System.out.println("consumoNormalSanta " + consumoNormalSantaElenaVans);
+            System.out.println("factorConsumo " + factorConsumoSantaElena);
+            System.out.println("consumoAutopista " + consumoSantaElenaVans);
+
         }
 
     } // END VOID VANS
@@ -289,24 +315,31 @@ public class Vehiculo {
     double consumoCambioUnoAutopista;
     double consumoCambioDosAutopista;
     double consumoCambioTresAutopista;
-    double totalConsumoCambiosAutopista;
 
     double consumoCambioSantaElena;
     double consumoCambioUnoSantaElena;
     double consumoCambioDosSantaElena;
     double consumoCambioTresSantaElena;
-    double totalConsumoCambiosSantaElena;
 
     double consumoCambioPalmas;
     double consumoCambioUnoPalmas;
     double consumoCambioDosPalmas;
     double consumoCambioTresPalmas;
-    double totalConsumoCambiosPalmas;
-   
-    double factorConsumoAutopista;
+    
+
+    double factorConsumoAutopistaTaxi;
+    double totalConsumoCambiosAutopistaTaxi;
+    double totalConsumoCambiosSantaElenaTaxi;
+    double totalConsumoCambiosPalmasTaxi;
+    
+    double factorConsumoAutopistaVans;
+    double totalConsumoCambiosAutopistaVans;
+    double totalConsumoCambiosSantaElenaVans;
+    
+    
     double factorConsumoSantaElena;
     double factorConsumoPalmas;
-    
+
     public void Cambios() {
         DistanciaRutas();
 
@@ -314,30 +347,45 @@ public class Vehiculo {
         cambioDos = .02;
         cambioTres = .01;
 
-        //OPERACIONES PARA HALLAR EL TOTAL DE CONSUMO DE LOS CAMBIOS
+        //OPERACIONES PARA HALLAR EL TOTAL DE CONSUMO DE LOS CAMBIOS TAXI
         
         //AUTOPISTA
-        factorConsumoAutopista = consumoAutopistaTaxi / distanciaBajadaAutopista;
-        consumoCambioUnoAutopista = factorConsumoAutopista * distanciaSubidaAutopistaCambioUno * cambioUno;
-        consumoCambioDosAutopista = factorConsumoAutopista * distanciaSubidaAutopistaCambioDos * cambioDos;
-        consumoCambioTresAutopista = factorConsumoAutopista * distanciaSubidaAutopistaCambioTres * cambioTres;
-        totalConsumoCambiosAutopista = consumoCambioUnoAutopista + consumoCambioDosAutopista + consumoCambioTresAutopista;
+        factorConsumoAutopistaTaxi = consumoAutopistaTaxi / distanciaBajadaAutopista;
+        consumoCambioUnoAutopista = factorConsumoAutopistaTaxi * distanciaSubidaAutopistaCambioUno * cambioUno;
+        consumoCambioDosAutopista = factorConsumoAutopistaTaxi * distanciaSubidaAutopistaCambioDos * cambioDos;
+        consumoCambioTresAutopista = factorConsumoAutopistaTaxi * distanciaSubidaAutopistaCambioTres * cambioTres;
+        totalConsumoCambiosAutopistaTaxi = consumoCambioUnoAutopista + consumoCambioDosAutopista + consumoCambioTresAutopista;
 
         //SANTA ELENA
         factorConsumoSantaElena = consumoSantaElenaTaxi / distanciaBajadaSantaElena;
         consumoCambioUnoSantaElena = factorConsumoSantaElena * distanciaSubidaSantaElenaCambioUno * cambioUno;
         consumoCambioDosSantaElena = factorConsumoSantaElena * distanciaSubidaSantaElenaCambioDos * cambioDos;
         consumoCambioTresSantaElena = factorConsumoSantaElena * distanciaSubidaSantaElenaCambioTres * cambioTres;
-        totalConsumoCambiosSantaElena = consumoCambioUnoSantaElena + consumoCambioDosSantaElena + consumoCambioTresSantaElena;
+        totalConsumoCambiosSantaElenaTaxi = consumoCambioUnoSantaElena + consumoCambioDosSantaElena + consumoCambioTresSantaElena;
 
         //PALMAS
         factorConsumoPalmas = consumoPalmasTaxi / distanciaBajadaPalmas;
         consumoCambioUnoPalmas = factorConsumoPalmas * distanciaSubidaPalmasCambioUno * cambioUno;
         consumoCambioDosPalmas = factorConsumoPalmas * distanciaSubidaPalmasCambioDos * cambioDos;
         consumoCambioTresPalmas = factorConsumoPalmas * distanciaSubidaPalmasCambioTres * cambioTres;
-        totalConsumoCambiosPalmas = consumoCambioUnoPalmas + consumoCambioDosPalmas + consumoCambioTresPalmas;
+        totalConsumoCambiosPalmasTaxi = consumoCambioUnoPalmas + consumoCambioDosPalmas + consumoCambioTresPalmas;
+
+        //OPERACIONES PARA HALLAR EL TOTAL DE CONSUMO DE LOS CAMBIOS VANS
         
+        //AUTOPISTA
+        factorConsumoAutopistaVans = consumoAutopistaVans / distanciaBajadaAutopista;
+        consumoCambioUnoAutopista = factorConsumoAutopistaVans * distanciaSubidaAutopistaCambioUno * cambioUno;
+        consumoCambioDosAutopista = factorConsumoAutopistaVans * distanciaSubidaAutopistaCambioDos * cambioDos;
+        consumoCambioTresAutopista = factorConsumoAutopistaVans * distanciaSubidaAutopistaCambioTres * cambioTres;
+        totalConsumoCambiosAutopistaVans = consumoCambioUnoAutopista + consumoCambioDosAutopista + consumoCambioTresAutopista;
         
+        //SANTA ELENA
+        factorConsumoSantaElena = consumoSantaElenaVans / distanciaBajadaSantaElena;
+        consumoCambioUnoSantaElena = factorConsumoSantaElena * distanciaSubidaSantaElenaCambioUno * cambioUno;
+        consumoCambioDosSantaElena = factorConsumoSantaElena * distanciaSubidaSantaElenaCambioDos * cambioDos;
+        consumoCambioTresSantaElena = factorConsumoSantaElena * distanciaSubidaSantaElenaCambioTres * cambioTres;
+        totalConsumoCambiosSantaElenaVans = consumoCambioUnoSantaElena + consumoCambioDosSantaElena + consumoCambioTresSantaElena;
+
     }//END VOID CAMBIOS
 
     double[][] ingresosMatriz = new double[6][3]; // Columna 0: Taxi, Columna 1: Vans, Columna 2: Busetas
